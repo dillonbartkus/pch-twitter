@@ -2,6 +2,7 @@ import "@babel/polyfill";
 import TweetManager from "./TweetManager";
 
 TweetManager.refreshTweets();
+TweetManager.startRefreshTimer();
 
 const refreshButton = document.querySelector('.refresh');
 
@@ -15,5 +16,3 @@ refreshButton.addEventListener('click', () => {
 });
 
 window.addEventListener('resize', () => TweetManager.reformatTweets());
-
-TweetManager.startRefreshTimer();
