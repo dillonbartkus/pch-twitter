@@ -16,6 +16,7 @@ header {
 header > h1 {
     color: #F4F4F4;
     margin: 0 0 0 10px;
+    font-weight: 500;
 }
 
 .main {
