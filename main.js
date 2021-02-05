@@ -1,4 +1,5 @@
-import TweetManager from './TweetManager';
+import "@babel/polyfill";
+import TweetManager from "./TweetManager";
 
 TweetManager.refreshTweets();
 

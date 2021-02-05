@@ -21,7 +21,7 @@ export default class TweetManager {
 
     static clearTweets() {
         const tweets = document.querySelectorAll('.tweet-wrapper');
-        tweets.forEach(tweet => tweet.remove());
+        [...tweets].forEach(tweet => tweet.outerHTML = "");
     }
 
     static reformatTweets() {
