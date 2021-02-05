@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+body {
+    margin: 0;
+}
+
+header {
+    background-image: linear-gradient(to left, gray , darkgray);
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    text-align: left;
+    padding: 5px;
+}
+
+header > h1 {
+    color: #F4F4F4;
+    margin: 0 0 0 10px;
+}
+
+.main {
+    font-family: 'Raleway', sans-serif;
+    width: 600px;
+    margin: auto;
+    border-radius: 5px;
+    background: #272727 url('/pch-logo.89e83af9.jpg') no-repeat center;
+    text-align: right;
+}
+
+.feed {
+    text-align: left;
+}
+
+.tweet {
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    min-height: 75px;
+}
+
+.divider {
+    width: 100%;
+    height: 2px;
+    background: black;
+    border-top: 1px solid #848484;
+    border-bottom: 1px solid #848484;
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+    order: 2;
+}
+
+.screen_name {
+    order: 1;
+    margin: 0 0 5px 0;
+    font-size: 1em;
+    font-weight: bold;
+    color: #F4F4F4;
+}
+
+.text {
+    order: 2;
+    margin: 0;
+    color: #FFF;
+}
+
+.avatar {
+    margin: auto 10px auto 0;
+    width: 66px;
+}
+
+.refresh {
+    background: gray url('/refresh.622e6193.jpg') no-repeat center;
+    height: 30px;
+    width: 30px;
+    margin: 10px;
+    outline: 0;
+}
+
+.rotate {
+    animation: rotate .5s;
+}
+
+.touch {
+    animation: touch .25s linear;
+}
+
+.swipe-right {
+    animation: swipe-right .5s linear;
+}
+
+.swipe-left {
+    animation: swipe-left .5s linear;
+}
+
+.slide {
+    animation: slide .5s;
+}
+
+@keyframes touch {
+    from {transform: scale(.9);}
+    to {transform: scale(1);}
+}
+
+@keyframes slide {
+    from {transform: translate(100px);}
+    to {transform: translate(0);}
+}
+
+@keyframes swipe-right {
+    from {transform: translate(0);}
+    to {transform: translate(999px);}
+}
+
+@keyframes swipe-left {
+    from {transform: translate(0);}
+    to {transform: translate(-999px);}
+}
+
+@keyframes rotate {
+    from {transform: rotate(90deg);}
+    to {transform: rotate(0);}
+}
+
+@media screen and (max-width: 650px) {
+    .main {
+        width: 98%;
+        height: 100vh;
+    }
+    header > h1 {
+        font-size: 24px;
+    }
+    .text {
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .tweet {
+        padding: 5px;
+    }
+    .text {
+        font-size: 12px;
+    }
+    .screen_name {
+        font-size: 14px;
+    }
+}
+
+
+/*# sourceMappingURL=/twitter-master.9ad09f98.css.map */
