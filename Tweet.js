@@ -1,3 +1,15 @@
+import avatar1 from './images/avatar1.png';
+import avatar2 from './images/avatar2.png';
+import avatar3 from './images/avatar3.png';
+import avatar4 from './images/avatar4.png';
+import avatar5 from './images/avatar5.png';
+import avatar6 from './images/avatar6.png';
+import avatar7 from './images/avatar7.png';
+import avatar8 from './images/avatar8.png';
+import avatar9 from './images/avatar9.png';
+
+const avatars = [avatar1, avatar2, avatar3, avatar4, avatar5, avatar6, avatar7, avatar8, avatar9];
+
 export default class Tweet {
     constructor(tweet) {
         this.text = tweet.text;
@@ -5,7 +17,7 @@ export default class Tweet {
         this.profile_image_url = tweet.profile_image_url;
     }
 
-    construct() {
+    construct(ind) {
         const feed = document.querySelector('.feed');
 
         const tweetWrapper = document.createElement('div');
@@ -26,7 +38,7 @@ export default class Tweet {
         textContainer.classList.add('text-container');
         tweet.appendChild(textContainer);
 
-        for (const key in this) {
+        Object.keys(this).forEach((key) => {
             const value = this[key];
 
             const el = document.createElement(key === 'profile_image_url' ? 'img' : 'p');
@@ -34,13 +46,21 @@ export default class Tweet {
             if (key === 'profile_image_url') {
                 el.setAttribute('src', value);
                 // fall back to default user pic in case of invalid src
-                el.onerror = () => el.setAttribute('src', 'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png');
+                el.onerror = () => el.setAttribute('src', `${avatars[ind]}`);
                 el.classList.add('avatar');
                 tweet.appendChild(el);
             } else {
-                el.textContent = (key === 'screen_name') ? `@${value}` : value;
-                textContainer.appendChild(el)
+                if (key === 'screen_name') {
+                    el.textContent = `@${value}`;
+                    el.addEventListener('click', () => {
+                        window.open(`https://www.twitter.com/${value}`)
+                    });
+                }
+                if (key === 'text') {
+                    el.textContent = value;
+                }
+                textContainer.appendChild(el);
             }
-        }
+        })
     }
 }

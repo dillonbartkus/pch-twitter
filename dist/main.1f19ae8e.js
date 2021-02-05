@@ -8787,6 +8787,24 @@ module.exports = {
     "since_id_str": "0"
   }
 };
+},{}],"images/avatar1.png":[function(require,module,exports) {
+module.exports = "/avatar1.24c58ac1.png";
+},{}],"images/avatar2.png":[function(require,module,exports) {
+module.exports = "/avatar2.e951b0e6.png";
+},{}],"images/avatar3.png":[function(require,module,exports) {
+module.exports = "/avatar3.4c948856.png";
+},{}],"images/avatar4.png":[function(require,module,exports) {
+module.exports = "/avatar4.4c870eaf.png";
+},{}],"images/avatar5.png":[function(require,module,exports) {
+module.exports = "/avatar5.933b578b.png";
+},{}],"images/avatar6.png":[function(require,module,exports) {
+module.exports = "/avatar6.67ad4fc7.png";
+},{}],"images/avatar7.png":[function(require,module,exports) {
+module.exports = "/avatar7.fa0bdc3d.png";
+},{}],"images/avatar8.png":[function(require,module,exports) {
+module.exports = "/avatar8.6b346ef3.png";
+},{}],"images/avatar9.png":[function(require,module,exports) {
+module.exports = "/avatar9.989618fa.png";
 },{}],"Tweet.js":[function(require,module,exports) {
 "use strict";
 
@@ -8795,11 +8813,33 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
+var _avatar = _interopRequireDefault(require("./images/avatar1.png"));
+
+var _avatar2 = _interopRequireDefault(require("./images/avatar2.png"));
+
+var _avatar3 = _interopRequireDefault(require("./images/avatar3.png"));
+
+var _avatar4 = _interopRequireDefault(require("./images/avatar4.png"));
+
+var _avatar5 = _interopRequireDefault(require("./images/avatar5.png"));
+
+var _avatar6 = _interopRequireDefault(require("./images/avatar6.png"));
+
+var _avatar7 = _interopRequireDefault(require("./images/avatar7.png"));
+
+var _avatar8 = _interopRequireDefault(require("./images/avatar8.png"));
+
+var _avatar9 = _interopRequireDefault(require("./images/avatar9.png"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var avatars = [_avatar.default, _avatar2.default, _avatar3.default, _avatar4.default, _avatar5.default, _avatar6.default, _avatar7.default, _avatar8.default, _avatar9.default];
 
 var Tweet = /*#__PURE__*/function () {
   function Tweet(tweet) {
@@ -8812,7 +8852,7 @@ var Tweet = /*#__PURE__*/function () {
 
   _createClass(Tweet, [{
     key: "construct",
-    value: function construct() {
+    value: function construct(ind) {
       var _this = this;
 
       var feed = document.querySelector('.feed');
@@ -8832,8 +8872,7 @@ var Tweet = /*#__PURE__*/function () {
       var textContainer = document.createElement('div');
       textContainer.classList.add('text-container');
       tweet.appendChild(textContainer);
-
-      var _loop = function _loop(key) {
+      Object.keys(this).forEach(function (key) {
         var value = _this[key];
         var el = document.createElement(key === 'profile_image_url' ? 'img' : 'p');
         el.classList.add(key);
@@ -8842,20 +8881,26 @@ var Tweet = /*#__PURE__*/function () {
           el.setAttribute('src', value); // fall back to default user pic in case of invalid src
 
           el.onerror = function () {
-            return el.setAttribute('src', 'https://iupac.org/wp-content/uploads/2018/05/default-avatar.png');
+            return el.setAttribute('src', "".concat(avatars[ind]));
           };
 
           el.classList.add('avatar');
           tweet.appendChild(el);
         } else {
-          el.textContent = key === 'screen_name' ? "@".concat(value) : value;
+          if (key === 'screen_name') {
+            el.textContent = "@".concat(value);
+            el.addEventListener('click', function () {
+              window.open("https://www.twitter.com/".concat(value));
+            });
+          }
+
+          if (key === 'text') {
+            el.textContent = value;
+          }
+
           textContainer.appendChild(el);
         }
-      };
-
-      for (var key in this) {
-        _loop(key);
-      }
+      });
     }
   }]);
 
@@ -8863,7 +8908,7 @@ var Tweet = /*#__PURE__*/function () {
 }();
 
 exports.default = Tweet;
-},{}],"TweetManager.js":[function(require,module,exports) {
+},{"./images/avatar1.png":"images/avatar1.png","./images/avatar2.png":"images/avatar2.png","./images/avatar3.png":"images/avatar3.png","./images/avatar4.png":"images/avatar4.png","./images/avatar5.png":"images/avatar5.png","./images/avatar6.png":"images/avatar6.png","./images/avatar7.png":"images/avatar7.png","./images/avatar8.png":"images/avatar8.png","./images/avatar9.png":"images/avatar9.png"}],"TweetManager.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -8907,20 +8952,14 @@ var TweetManager = /*#__PURE__*/function () {
   _createClass(TweetManager, null, [{
     key: "getTweets",
     value: function getTweets() {
-      // if it's not the first time fetching, increment page no to fetch new tweets
-      if (this.tweets.length) {
-        this.pageNo++;
-      }
-
-      ; // "fetch" the twitter data
-
-      this.tweets = this.pageNo === 1 ? _pch_twitter_response.statuses : _pch_twitter_response_two.statuses;
+      // "fetch" the twitter data
+      this.tweets = this.pageNo === 1 ? _pch_twitter_response.statuses.slice(0, 8) : _pch_twitter_response_two.statuses.slice(0, 8);
       return this.tweets;
     }
   }, {
     key: "renderTweets",
     value: function renderTweets() {
-      return this.tweets.map(function (tweet) {
+      return this.tweets.map(function (tweet, ind) {
         var text = tweet.text,
             _tweet$user = tweet.user,
             screen_name = _tweet$user.screen_name,
@@ -8930,7 +8969,7 @@ var TweetManager = /*#__PURE__*/function () {
           screen_name: screen_name,
           profile_image_url: profile_image_url
         });
-        newTweet.construct();
+        newTweet.construct(ind);
       });
     }
   }, {
@@ -8945,16 +8984,14 @@ var TweetManager = /*#__PURE__*/function () {
   }, {
     key: "reformatTweets",
     value: function reformatTweets() {
-      if (window.innerWidth < 700 && this.tweets.length > 5) {
+      var mobileRegEx = window.navigator.userAgent.match(/Mobile/g);
+
+      if (window.innerWidth < 650 && this.tweets.length > 5) {
         this.clearTweets();
+        this.tweets = this.tweets.slice(0, 4);
+        this.renderTweets(); // add gesture events for mobile
 
-        var newTweets = _toConsumableArray(this.tweets);
-
-        newTweets.splice(0, 4);
-        this.tweets = newTweets;
-        this.renderTweets();
-
-        if (window.navigator.userAgent.includes('Mobile')) {
+        if (mobileRegEx !== null && mobileRegEx !== void 0 && mobileRegEx.length) {
           var tweetWrappers = document.querySelectorAll('.tweet-wrapper');
           tweetWrappers.forEach(function (wrapper) {
             wrapper.childNodes[0].addEventListener('click', function () {
@@ -8984,7 +9021,7 @@ var TweetManager = /*#__PURE__*/function () {
         }
       }
 
-      if (window.innerWidth > 700 && this.tweets.length <= 5) {
+      if (window.innerWidth > 650 && this.tweets.length < 5) {
         this.clearTweets();
         this.getTweets();
         this.renderTweets();
@@ -8993,6 +9030,12 @@ var TweetManager = /*#__PURE__*/function () {
   }, {
     key: "refreshTweets",
     value: function refreshTweets() {
+      // if it's not the first time fetching, increment page no to fetch new tweets
+      if (this.tweets.length) {
+        this.pageNo++;
+      }
+
+      ;
       this.clearTweets();
       this.getTweets();
       this.renderTweets();
@@ -9335,7 +9378,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59011" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49379" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
