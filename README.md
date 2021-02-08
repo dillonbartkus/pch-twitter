@@ -1,5 +1,6 @@
-## To run locally: cd into project directory and type 'parcel index.html' in CLI.
-## To build: 'parcel build index.html'
+## To run locally: cd into project directory
+## type 'npm i' and then 'npm run dev' in CLI.
+## To build: 'npm run build'
 
 <!-- # PCH AgileUI twitter<sup>®</sup> take home project 
 
