@@ -1,4 +1,7 @@
-# PCH AgileUI twitter<sup>®</sup> take home project 
+## To run locally: cd into project directory and type 'parcel index.html' in CLI.
+## To build: 'parcel build index.html'
+
+<!-- # PCH AgileUI twitter<sup>®</sup> take home project 
 
 The following is a small test for the PCH UI group to be able to see your skills and see how you code, what standards you use, the clarity of your code, how up to date you are on current UI developments in the industry.
 PCH twitter module
@@ -23,4 +26,4 @@ PCH twitter module
 5. If assets are missing try to have your solution degrade gracefully
 
 Please make sure that the code you provide back to us is packaged into a zip file, organize your code however you see fit, also remember this is a chance to show us what cool new tech you know so show off a little, we can't get a good feel for your skills looking at 5 lines of jQuery code
-
+ -->
